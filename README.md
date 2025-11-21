@@ -62,6 +62,7 @@ Smart-Chip-Detector/
 │   └── hook-streamlit.py     # PyInstaller 自定义 Hook 文件
 ├── requirements.txt          # 项目依赖库
 └── README.md                 # 项目文档
+```
 
 💡 核心难点与解决方案 (Key Challenges & Solutions)
 
