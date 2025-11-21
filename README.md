@@ -1,6 +1,6 @@
 智能芯片自动化视觉检测工具 (Smart Chip Detector)
 
-![Software UI Demo](ui_demo.png)
+![Software UI Demo](WAFER_INSPECTION.png)
     ⚠️ Disclaimer / 免责声明
 
     本项目为本人在 [实习/合作公司名称] 期间开发的核心交付物。
@@ -109,6 +109,8 @@ xychart-beta
 解决方案: 果断制定云端迁移策略。利用阿里云 PAI-DSW 平台解决算力与环境瓶颈，在 Tesla V100 上完成了 300 Epoch 的高效训练 。
 
 📊 项目成果 (Deliverables)
+
+![Software UI Demo](ui_demo.png)
 
     高可用桌面软件: 交付了独立的 ChipDetector 文件夹，包含带图形界面的可视化检测工具 。
 
