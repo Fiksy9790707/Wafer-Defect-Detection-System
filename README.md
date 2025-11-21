@@ -1,4 +1,5 @@
 智能芯片自动化视觉检测工具 (Smart Chip Detector)
+
 ![Software UI Demo](ui_demo.png)
     ⚠️ Disclaimer / 免责声明
 
@@ -17,7 +18,9 @@
 🏗️ 系统架构 (System Architecture)
 
 系统采用 前后端分离 (Decoupled Architecture) 的设计思想 ：
+
 ![System Architecture](architecture_diagram.png)
+
     数据处理层: 针对超大尺寸 BMP 图像，开发了基于重叠切割（Overlap Slicing）的预处理算法。
 
     推理引擎: 基于云端 GPU 训练的 YOLOv8 模型，负责高精度的目标检测 。
@@ -72,7 +75,16 @@ Smart-Chip-Detector/
 
 深度分析: 经排查，确认为输入图像切片过大，导致芯片在 Feature Map 中的相对像素占比过低，特征被网络忽略 。
 
+
 解决方案: 提出并验证了**“降维切割”假设**。将切割尺寸从 640x640 调整为 320x320，并同步调整训练参数 (imgsz=320) 。
+
+```mermaid
+xychart-beta
+    title "切割尺寸优化对召回率(Recall)的影响"
+    x-axis ["原始方案 (640x640)", "优化方案 (320x320)"]
+    y-axis "Recall (%)" 0 --> 100
+    bar [45, 92]
+```
 
     成效: 在不增加数据量的情况下，显著提升了模型对小目标的敏感度，漏检率大幅下降。
 
