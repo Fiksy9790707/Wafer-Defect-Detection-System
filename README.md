@@ -1,5 +1,5 @@
 智能芯片自动化视觉检测工具 (Smart Chip Detector)
-
+![Software UI Demo](ui_demo.png)
     ⚠️ Disclaimer / 免责声明
 
     本项目为本人在 [实习/合作公司名称] 期间开发的核心交付物。
@@ -17,7 +17,7 @@
 🏗️ 系统架构 (System Architecture)
 
 系统采用 前后端分离 (Decoupled Architecture) 的设计思想 ：
-
+![System Architecture](architecture_diagram.png)
     数据处理层: 针对超大尺寸 BMP 图像，开发了基于重叠切割（Overlap Slicing）的预处理算法。
 
     推理引擎: 基于云端 GPU 训练的 YOLOv8 模型，负责高精度的目标检测 。
@@ -41,6 +41,27 @@
     图像处理: OpenCV, NumPy
 
     打包工具: PyInstaller (Custom Spec & Subprocess execution)
+    
+## 📂 项目结构 (Project Structure)
+
+虽然源代码未公开，但项目的工程结构如下，展示了模块化设计的理念：
+
+```text
+Smart-Chip-Detector/
+├── 📂 backend/
+│   ├── backend_yolo.py       # [Core] 核心算法库：封装图像切割与推理逻辑
+│   ├── utils_slicing.py      # 320x320 重叠切割算法实现
+│   └── post_processing.py    # 坐标映射与非极大值抑制(NMS)
+├── 📂 frontend/
+│   ├── app_yolo.py           # [UI] Streamlit 前端交互逻辑
+│   └── components.py         # UI 组件封装
+├── 📂 model/
+│   └── best.pt               # 云端训练完成的 YOLOv8 权重文件
+├── 📂 build_tools/
+│   ├── main.py               # [Launcher] 子进程启动脚本 (解决打包问题)
+│   └── hook-streamlit.py     # PyInstaller 自定义 Hook 文件
+├── requirements.txt          # 项目依赖库
+└── README.md                 # 项目文档
 
 💡 核心难点与解决方案 (Key Challenges & Solutions)
 
