@@ -31,6 +31,7 @@ Public:
 - UI and architecture visuals.
 - High-level implementation notes.
 - Dependency notes.
+- Sanitized toy post-processing example for coordinate shifting and NMS.
 
 Not public:
 
@@ -52,6 +53,21 @@ The prototype can be understood as four layers:
 3. **Application interface**: Streamlit-style UI wraps inference into an inspectable workflow.
 4. **Local delivery**: the target delivery direction is a Windows-local demo rather than a notebook-only result.
 
+## Sanitized Toy Example
+
+The original project code and data cannot be released publicly. To make the public case study more inspectable, this repository includes a small synthetic example:
+
+```bash
+python examples/toy_postprocess.py
+```
+
+The example demonstrates:
+
+- shifting tile-local detection boxes into image-level coordinates;
+- applying non-maximum suppression to remove duplicate boxes from overlapping tiles.
+
+See [docs/public_evidence_note.md](docs/public_evidence_note.md) for the public evidence boundary.
+
 ## Repository Assets
 
 | File | Purpose |
@@ -59,17 +75,18 @@ The prototype can be understood as four layers:
 | `ui_demo.png` | Interface preview for the inspection workflow |
 | `architecture_diagram.png` | High-level system architecture |
 | `WAFER_INSPECTION.png` | Domain visual for wafer / chip inspection |
+| `examples/toy_postprocess.py` | Sanitized toy example for coordinate shifting and NMS |
+| `docs/public_evidence_note.md` | Explanation of what public evidence can and cannot prove |
 | `requirements.txt` | Reference dependency list |
 
 ## Quickstart
-
-This public repository does not include runnable source code because the original project contains private implementation details and data.
 
 To inspect the public materials:
 
 ```bash
 git clone https://github.com/Fiksy9790707/Wafer-Defect-Detection-System.git
 cd Wafer-Defect-Detection-System
+python examples/toy_postprocess.py
 ```
 
 Then open:
@@ -78,6 +95,7 @@ Then open:
 - `ui_demo.png`
 - `architecture_diagram.png`
 - `WAFER_INSPECTION.png`
+- `docs/public_evidence_note.md`
 
 ## Tech Stack
 
@@ -90,10 +108,10 @@ Then open:
 
 ## Current Limitations
 
-- No public source code or dataset is included.
+- The full original source code and dataset are not public.
 - Public metrics are intentionally not emphasized unless they can be verified from reproducible materials.
-- The current public version is best used to understand the workflow and engineering direction.
-- A real demo GIF or runnable sample would make the repository easier to evaluate later.
+- The toy post-processing example illustrates a generic concept only; it is not production validation.
+- A real demo GIF or sanitized sample image would make the repository easier to evaluate later.
 
 ## Future Improvements
 
